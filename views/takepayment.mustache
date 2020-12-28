@@ -1,0 +1,98 @@
+{{>header}}
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4" style="text-align:center">Registration Page</h1>
+            <hr class="my-4">
+            <div style="text-align:center">
+                <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+                <p style="margin-top:7px;">Already have an account?</p>
+            </div>
+        </div>
+
+
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <label>Subscribe to</label>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <h5>{{ name }} {{ amount }} / {{ interval }}</h5>
+            </div>
+        </div>
+        <form action="/processPayment" method="POST" id="payment-form">
+            <div class="form-row d-flex justify-content-center">
+                <div class="col-md-3 mb-3">
+                    <input type="hidden" value="{{ id }}" name="subscriptionId" />
+                    <label>Email Address</label>
+                    <input type="text" class="form-control" placeholder="your@email.com" name="customerEmail">
+                </div>
+            </div>
+            <div class="form-row d-flex justify-content-center">
+                <div class="col-md-3 mb-3">
+                    <label for="add-card">Credit or debit card</label>
+                    <div id="add-card">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row d-flex justify-content-center">
+                <div class="col-md-3 mb-3 justify-content-center">
+                    <div id="add-card-errors" role="alert"></div>
+                </div>
+            </div>
+            <div class="form-row d-flex justify-content-center">
+                <div class="col-md-3 mb-3 justify-content-center">
+                    <input class="btn btn-primary" type="submit" value="Pay {{ amount }}" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+<script>
+    if (document.getElementById('add-card')) {
+        var stripe = Stripe('pk_test_51Hj6UrHDFsCXlLlmqbtay8nI7GXDJn1kNLdWc3466X88raHucg3S4u0twbAIsnpdKKn0trCUMswAUC54XMrMrkah0040wQcvwu');
+        var elements = stripe.elements();
+
+        var style = {};
+
+        var card = elements.create('card', { style: style });
+
+        card.mount('#add-card');
+        card.addEventListener('change', event => {
+            var displayError = document.getElementById('add-card-errors');
+
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    var errorElement = document.getElementById('add-card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    createToken(result.token);
+                }
+            })
+        });
+    }
+
+    function createToken(token) {
+        var form = document.getElementById('payment-form');
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'stripeToken');
+        input.setAttribute('value', token.id);
+        form.appendChild(input);
+        form.submit();
+    }
+</script>
+
+</body>
+</html>

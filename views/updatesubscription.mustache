@@ -1,0 +1,87 @@
+{{>header}}
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            {{ #admin }}
+                <h1 class="display-4" style="text-align:center">Admin Dashboard</h1>
+            {{ /admin }}
+            {{ #member }}
+                <h1 class="display-4" style="text-align:center">Customer Dashboard</h1>
+            {{ /member }}
+            <hr class="my-4">
+            <h3 style="text-align:center">Update Subscription</h3>
+            <div style="text-align:center">
+                <a class="btn btn-dark btn-lg" href="/logout" role="button">Logout</a>
+                <p style="margin-top:7px;">Want to logout?</p>
+            </div>
+        </div>
+
+        <ul class="nav">
+            <li class="nav-item">
+                {{ #admin }}
+                    <a href="/admin" class="nav-link active">Back to Dashboard</a>
+                {{ /admin }}
+
+                {{ #member }}
+                    <a href="/customer" class="nav-link active" style="font-size:20px;">Back to Dashboard</a>
+                {{ /member }}
+            </li>
+        </ul>
+
+
+        <div class="d-flex justify-content-center alert alert-success" role="alert">
+            {{ msg }}
+        </div>
+
+
+         <div class="form-row d-flex justify-content-center">
+            {{ #basic }}
+                <div class="col-md-3 mb-3">
+                    <label for="phone">Subscription Type</label>
+                    <h4>Basic</h4>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <form action="/update" method="POST">
+                        <label for="phone">Change Subscription</label>
+                        <input type="hidden" value="price_1Hj6WDHDFsCXlLlm2epT4fh8" name="subscription" />
+                        <input class="btn btn-primary" type="submit" value="Update Subscription"/>
+                    </form>
+                </div>
+            {{ /basic }}
+        </div>
+
+        <div class="form-row d-flex justify-content-center">
+            {{ #plus }}
+                <div class="col-md-3 mb-3">
+                    <label for="phone">Subscription Type</label>
+                    <h4>Plus</h4>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <form action="/update" method="POST">
+                        <label for="phone">Change Subscription</label>
+                        <input type="hidden" value="price_1Hj6WQHDFsCXlLlmVI9ZXy25" name="subscription" />
+                        <input class="btn btn-primary" type="submit" value="Update Subscription"/>
+                    </form>
+                </div>
+            {{ /plus }}
+        </div>
+
+        <div class="form-row d-flex justify-content-center">
+            {{ #advanced }}
+                <div class="col-md-3 mb-3">
+                    <label for="phone">Subscription Type</label>
+                    <h4>Advanced</h4>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <form action="/update" method="POST">
+                        <label for="phone">Change Subscription</label>
+                        <input type="hidden" value="price_1Hj6X0HDFsCXlLlmGxAYjx0f" name="subscription" />
+                        <input class="btn btn-primary" type="submit" value="Update Subscription"/>
+                    </form>
+                </div>
+            {{ /advanced }}
+        </div>
+    </div>
+
+</body>
+</html>

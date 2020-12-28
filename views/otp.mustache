@@ -1,0 +1,83 @@
+{{>header}}
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4" style="text-align:center">Registration Page</h1>
+            <hr class="my-4">
+            <div style="text-align:center">
+                <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+                <p style="margin-top:7px;">Already have an account?</p>
+            </div>
+        </div>
+
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <label for="phone">Recieve Code by Text Message on</label>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <h5><span id="phone">{{ phone }}</span></h5>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <h5><p id="codeSent" >Click on "Get code" to recieve code</p></h5>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="#" id="getcode" class="nav-link active" style="font-size:20px">Get Code</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" name="code" id="codeEntering">
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 d-flex justify-content-center">
+                <form action="/subscriptionregister">
+                    <input type="submit" class="btn btn-primary" id="submit" value="Check Code" />
+                </form>
+            </div>
+        </div>
+        <p id="code"></p>
+    </div>
+
+    <script>
+        var socket = io();
+        var verficationCode;
+
+        $('#getcode').on('click', function (event) {
+            socket.emit("get code",$('#phone').text());
+            socket.on("sentCode", function(code) {
+                $('#codeSent').text("Code sent to above number!!")
+                verficationCode = code;
+                $("#code").text(code);
+            });
+        });
+
+        $("#submit").prop('disabled', true);
+        $("#codeEntering").addClass("is-invalid");
+
+        $('#codeEntering').keyup(function(){
+            $("#submit").prop('disabled', true);
+            $("#codeEntering").removeClass("is-valid");
+            $("#codeEntering").addClass("is-invalid");
+            var dInput = this.value;
+            console.log(dInput);
+            if($('#codeEntering').val() == verficationCode){
+                $("#codeEntering").removeClass("is-invalid");
+                $("#codeEntering").addClass("is-valid");
+                $("#submit").prop('disabled', false);
+            }
+        });
+    </script>
+
+</body>
+</html>
