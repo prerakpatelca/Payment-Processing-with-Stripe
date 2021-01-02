@@ -24,7 +24,7 @@ This web application has three monthly subscription plans:
     - Socket.IO
     - Twilio
  
- # Learning Objectives
+# Learning Objectives
     - Use a payment processing system to manage and charge users
     - Use a template engine and sessions
     - Create user and admin interfaces
@@ -33,3 +33,17 @@ This web application has three monthly subscription plans:
 * Make sure you install npm dependances first: `npm install`
 * To run both server and client: `npm run start`
 * To run only server or client: `npm run server|client`
+
+# Output
+
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.34.18%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.34.03%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.33.50%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.34.49%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.35.02%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.35.23%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.35.53%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.36.24%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.36.54%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.38.52%20PM.png)
+![alt text](https://github.com/prerakpatelca/Payment-Processing-with-Stripe/blob/master/Screen%20Shot%202021-01-02%20at%203.39.20%20PM.png)
